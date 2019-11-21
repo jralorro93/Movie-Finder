@@ -1,8 +1,8 @@
 import React from 'react'
 
-// import { makeStyles } from '@material-ui/core/styles'
-// import { Paper, InputBase, Divider, IconButton } from '@material-ui/core'
-// import { Menu, Search } from '@material-ui/icons'
+import { makeStyles } from '@material-ui/core/styles'
+import { Paper, InputBase, Divider, IconButton } from '@material-ui/core'
+import { Menu, Search } from '@material-ui/icons'
 
 // const useStyles = makeStyles(theme => ({
 //     root: {
@@ -26,7 +26,7 @@ import React from 'react'
 
 const SearchBar = () => {
     return (
-        <h1>hi</h1>
+        <h1></h1>
     )
 }
 export default SearchBar
