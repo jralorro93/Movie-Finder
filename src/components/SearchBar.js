@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+import searchMovie from '../utils/Search/searchMovie'
 
 import { makeStyles } from '@material-ui/core/styles'
 import { Paper, InputBase, Divider, IconButton } from '@material-ui/core'
@@ -26,16 +28,23 @@ const useStyles = makeStyles(theme => ({
 
 const SearchBar = () => {
     const classes = useStyles()
+    const [ search, setSearch ] = useState('')
+
+    const handleChange = (e) => {
+        setSearch(e.target.value)
+    }
+
     return (
         <Paper component='form' className={classes.root}>
             <IconButton>
                 <Menu/>
             </IconButton>
             <InputBase 
-            className={classes.input}
-            placeholder='Type any movie, series, or documentary'
+                className={classes.input}
+                placeholder='Type any movie, series, or documentary'
+                value={search}
             />
-            <IconButton>
+            <IconButton onClick={() => searchMovie()}>
                 <Search />
             </IconButton>
         </Paper>
