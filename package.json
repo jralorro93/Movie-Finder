@@ -43,5 +43,8 @@
   "bugs": {
     "url": "https://github.com/jralorro93/Movie-Finder/issues"
   },
-  "homepage": "https://github.com/jralorro93/Movie-Finder#readme"
+  "homepage": "https://github.com/jralorro93/Movie-Finder#readme",
+  "devDependencies": {
+    "eslint-plugin-react-hooks": "^2.3.0"
+  }
 }
