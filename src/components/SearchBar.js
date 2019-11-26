@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import searchMovie from '../utils/Search/searchMovie'
 
@@ -26,12 +26,26 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const SearchBar = () => {
+const SearchBar = (props) => {
     const classes = useStyles()
-    const [ search, setSearch ] = useState('')
+    const [ searchValue, setSearchValue ] = useState('')
+    const [ films, setFilms ] = useState([])
 
     const handleChange = (e) => {
-        setSearch(e.target.value)
+        setSearchValue(e.target.value)
+        console.log('this is searchValue', searchValue)
+    }
+
+    const resetSearchValue = () => {
+        setSearchValue('')
+    }
+
+    const callSearchFunction = async (e) => {
+        e.preventDefault()
+        console.log(searchValue)
+        const movies = await searchMovie(searchValue)
+
+        resetSearchValue()
     }
 
     return (
@@ -42,9 +56,11 @@ const SearchBar = () => {
             <InputBase 
                 className={classes.input}
                 placeholder='Type any movie, series, or documentary'
-                value={search}
+                value={searchValue}
+                onChange={handleChange}
+                type='text'
             />
-            <IconButton onClick={() => searchMovie()}>
+            <IconButton type='submit' onClick={callSearchFunction}>
                 <Search />
             </IconButton>
         </Paper>
