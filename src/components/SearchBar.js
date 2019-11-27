@@ -29,11 +29,9 @@ const useStyles = makeStyles(theme => ({
 const SearchBar = (props) => {
     const classes = useStyles()
     const [ searchValue, setSearchValue ] = useState('')
-    const [ films, setFilms ] = useState([])
 
     const handleChange = (e) => {
         setSearchValue(e.target.value)
-        console.log('this is searchValue', searchValue)
     }
 
     const resetSearchValue = () => {
@@ -42,9 +40,8 @@ const SearchBar = (props) => {
 
     const callSearchFunction = async (e) => {
         e.preventDefault()
-        console.log(searchValue)
         const movies = await searchMovie(searchValue)
-
+        props.setMovies(movies)
         resetSearchValue()
     }
 

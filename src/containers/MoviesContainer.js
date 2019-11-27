@@ -1,8 +1,17 @@
 import React from 'react'
+import Movie from '../components/Movie'
 
-const MoviesContainer = () => {
+const MoviesContainer = (props) => {
+    console.log('porps', props.movies)
+    const renderMovies = () => {
+        props.movies.map((movie, index) => {
+            <Movie key={index} movie={movie}/>
+        })
+    }
     return (
-        <h2>Hi from MoviesContainer</h2>
+        <div>
+
+        </div>
     )
 }
 export default MoviesContainer

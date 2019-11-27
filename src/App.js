@@ -28,11 +28,12 @@ const useStyles = makeStyles(theme => ({
 const App = () => {
   const classes = useStyles()
   const [ movies, setMovies ] = useState([])
+  
   return (
     <div>
       <h2>Movie Finder</h2>
-      <SearchBar />
-      <MoviesContainer />
+      <SearchBar setMovies={setMovies}/>
+      <MoviesContainer movies={movies}/>
     </div>
   )
 }
