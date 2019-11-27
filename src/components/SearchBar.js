@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import searchMovie from '../utils/Search/searchMovie'
+import searchMovies from '../utils/movies/searchMovies'
 
 import { makeStyles } from '@material-ui/core/styles'
 import { Paper, InputBase, Divider, IconButton } from '@material-ui/core'
@@ -40,7 +40,7 @@ const SearchBar = (props) => {
 
     const callSearchFunction = async (e) => {
         e.preventDefault()
-        const movies = await searchMovie(searchValue)
+        const movies = await searchMovies(searchValue)
         props.setMovies(movies)
         resetSearchValue()
     }
