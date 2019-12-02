@@ -1,15 +1,23 @@
 import React from 'react'
 import Movie from '../components/Movie'
 
-const MoviesContainer = (props) => {
-    // console.log('porps', props.movies)
-    const renderMovies = () => {
-        
+import { Grid } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
+
+const useStyles = makeStyles(theme => ({
+    item: {
+        padding: '20px'
     }
+}))
+
+const MoviesContainer = (props) => {
+    const classes = useStyles()
     return (
-        <div>
-            {props.movies.map((movie, index) => <Movie key={index} movie={movie}/>)}
-        </div>
+        <Grid container>
+            {props.movies.map((movie, index) => 
+                <Movie key={index} movie={movie}/>
+            )}
+        </Grid>
     )
 }
 export default MoviesContainer
