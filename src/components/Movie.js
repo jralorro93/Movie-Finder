@@ -11,6 +11,12 @@ const useStyles = makeStyles(theme => ({
     },
     poster: {
         maxWidth: '200px'
+    },
+    overview: {
+        position: 'relative'
+    },
+    title: {
+        width: '200px'
     }
 }))
 
@@ -19,7 +25,9 @@ const Movie = ({movie}) => {
     const classes = useStyles()
     return (
         <Grid item className={classes.item}>
-            <h2>{movie.title}</h2>
+            <Box component="h2" whiteSpace='normal' className={classes.title}>
+                {movie.title}
+            </Box>
             <div className={classes.poster}>
                 <img 
                     width='200'
@@ -27,7 +35,6 @@ const Movie = ({movie}) => {
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 />
             </div>
-            <Box>{movie.overview}</Box>
             <p>{movie.release_date}</p>
             <button onClick={ () => viewMoviePage(movie.id)}>View Page</button>
         </Grid>
