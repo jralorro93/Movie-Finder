@@ -7,7 +7,8 @@ import { Grid, Box } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
     item: {
-        padding: '20px'
+        padding: '20px',
+        margin: '7px'
     },
     poster: {
         maxWidth: '200px'
