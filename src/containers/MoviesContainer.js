@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/styles'
 const useStyles = makeStyles(theme => ({
     container: {
         width: '1100px',
-        marginLeft: '240px'
+        marginLeft: '225px'
     },
     item: {
         padding: '20px'

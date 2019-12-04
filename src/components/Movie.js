@@ -1,6 +1,6 @@
 import React from 'react'
 
-import viewMoviePage from '../utils/movies/viewMoviePage'
+import ViewPage from '../components/ViewPage'
 
 import { makeStyles } from '@material-ui/styles'
 import { Grid, Box } from '@material-ui/core'
@@ -37,7 +37,7 @@ const Movie = ({movie}) => {
                 />
             </div>
             <p>{movie.release_date}</p>
-            <button onClick={ () => viewMoviePage(movie.id)}>View Page</button>
+            <ViewPage movie={movie}/>
         </Grid>
     )
 }
