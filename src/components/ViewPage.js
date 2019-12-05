@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 
-import { Dialog, Typography, Box } from '@material-ui/core'
+import { Dialog, Typography, Box, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
@@ -17,6 +17,21 @@ const useStyles = makeStyles(theme => ({
     },
     poster: {
         display: 'flex'
+    },
+    tagline: {
+        marginLeft: '10px',
+        padding: '10px'
+    },
+    overview: {
+        marginLeft: '10px',
+        padding: '10px'
+    },
+    rating: {
+        margin: '80px 0 0 10px',
+        padding: '10px'
+    },
+    divider: {
+        margin: '50px 0 50px 0'
     }
 }))
 
@@ -24,6 +39,7 @@ const ViewPage = ({movie}) => {
     const classes = useStyles()
     const [ open, setOpen ] = useState(false)
     const [ movieDetails, setMovieDetails ] = useState({})
+    const [ cast, setCast ] = useState({})
 
     const handleOpen = () => {
         setOpen(true)
@@ -32,6 +48,15 @@ const ViewPage = ({movie}) => {
     const handleClose = () => {
         setOpen(false)
     }
+
+    // const showGenres = (genres) => {
+    //     const newArray = []
+    //     genres.forEach(genre => newArray.push(genre.name))
+    //     // for (let i = 0; i < newArray.length; i++) {
+
+    //     // }
+    //     console.log(newArray)
+    // }
     
     useEffect(() => {
         const fetchMovieInfo = async () => {
@@ -41,7 +66,16 @@ const ViewPage = ({movie}) => {
         } 
         fetchMovieInfo()
     }, [])
-    console.log('this is movieDetails', movieDetails)
+
+    useEffect(() => {
+        const fetchMovieCastInfo = async () => {
+            const url = `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=a64ac52df84876407a110b1db357ebe3`
+            const res = await axios.get(url)
+            setCast(res.data.cast)
+        }
+        fetchMovieCastInfo()
+    }, [])
+
     return (
         <div>
             <button onClick={ () => handleOpen()}>View Page</button>
@@ -49,7 +83,7 @@ const ViewPage = ({movie}) => {
                 open={open}
                 onClose={handleClose}
                 scroll='paper'
-                maxWidth='xl'
+                maxWidth='md'
             >
                 <Typography component="div" className={classes.paper}>
                     <Box component='h2' className={classes.title}>
@@ -62,17 +96,18 @@ const ViewPage = ({movie}) => {
                             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                         />
                         <div>
-                            <h2>
-                                {movie.tagline}
+                            <h2 className={classes.tagline}>
+                                {movieDetails.tagline}
                             </h2>
-                            <p>
+                            <p className={classes.overview}>
                                 {movie.overview}
                             </p>
+                            <h4>Genres: </h4>
+                            <h4 className={classes.rating}>{`Rating: ${movie.vote_average}/10`}</h4>
                         </div>
                     </Box>
-                    <Box component='p'>
-                        { `${movie.vote_average}/10 `}
-                    </Box>
+                    <Divider variant='middle' className={classes.divider}/>
+
                 </Typography>
             </Dialog>
         </div>
