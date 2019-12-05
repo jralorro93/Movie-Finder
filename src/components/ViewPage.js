@@ -8,16 +8,15 @@ const useStyles = makeStyles(theme => ({
     paper: {
         minHeight: '100px',
         backgroundColor: theme.palette.background.paper,
-        marginTop: '100px',
-        marginLeft: '225px',
-        border: '2px solid #fff',
-        display: 'flex',
-        padding: '15px'
+        padding: '15px',
+        minWidth: '600px'
+
     },
     title: {
-        position: 'relative',
-       
-        
+        height: '20px'
+    },
+    poster: {
+        display: 'flex'
     }
 }))
 
@@ -53,17 +52,26 @@ const ViewPage = ({movie}) => {
                 maxWidth='xl'
             >
                 <Typography component="div" className={classes.paper}>
-                    <img 
-                        width='200'
-                        alt={movieDetails.title}
-                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    />
                     <Box component='h2' className={classes.title}>
                         {movie.title}
                     </Box>
-                    <br/>
-                    <Box component='h2'>
-                        Hi
+                    <Box component='div' className={classes.poster}>
+                        <img 
+                            width='200'
+                            alt={movieDetails.title}
+                            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                        />
+                        <div>
+                            <h2>
+                                {movie.tagline}
+                            </h2>
+                            <p>
+                                {movie.overview}
+                            </p>
+                        </div>
+                    </Box>
+                    <Box component='p'>
+                        { `${movie.vote_average}/10 `}
                     </Box>
                 </Typography>
             </Dialog>
