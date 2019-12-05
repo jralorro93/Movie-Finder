@@ -48,6 +48,15 @@ const ViewPage = ({movie}) => {
     const handleClose = () => {
         setOpen(false)
     }
+
+    // const showGenres = (genres) => {
+    //     const newArray = []
+    //     genres.forEach(genre => newArray.push(genre.name))
+    //     // for (let i = 0; i < newArray.length; i++) {
+
+    //     // }
+    //     console.log(newArray)
+    // }
     
     useEffect(() => {
         const fetchMovieInfo = async () => {
@@ -66,7 +75,7 @@ const ViewPage = ({movie}) => {
         }
         fetchMovieCastInfo()
     }, [])
-    console.log('this is cast', cast)
+
     return (
         <div>
             <button onClick={ () => handleOpen()}>View Page</button>
@@ -93,11 +102,12 @@ const ViewPage = ({movie}) => {
                             <p className={classes.overview}>
                                 {movie.overview}
                             </p>
-                            <p className={classes.rating}>{`Rating: ${movie.vote_average}/10`}</p>
+                            <h4>Genres: </h4>
+                            <h4 className={classes.rating}>{`Rating: ${movie.vote_average}/10`}</h4>
                         </div>
                     </Box>
-                    <Divider middle className={classes.divider}/>
-                    
+                    <Divider variant='middle' className={classes.divider}/>
+
                 </Typography>
             </Dialog>
         </div>
