@@ -1,13 +1,24 @@
 import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 
-import viewMoviePage from '../utils/movies/viewMoviePage'
+import { Dialog, Typography, Box } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
-import { Modal } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
-
-const useStyles = (theme => ({
-
+const useStyles = makeStyles(theme => ({
+    paper: {
+        minHeight: '100px',
+        backgroundColor: theme.palette.background.paper,
+        marginTop: '100px',
+        marginLeft: '225px',
+        border: '2px solid #fff',
+        display: 'flex',
+        padding: '15px'
+    },
+    title: {
+        position: 'relative',
+       
+        
+    }
 }))
 
 const ViewPage = ({movie}) => {
@@ -31,19 +42,31 @@ const ViewPage = ({movie}) => {
         } 
         fetchMovieInfo()
     }, [])
-    
+    console.log('this is movieDetails', movieDetails)
     return (
         <div>
             <button onClick={ () => handleOpen()}>View Page</button>
-            <Modal
+            <Dialog
                 open={open}
                 onClose={handleClose}
+                scroll='paper'
+                maxWidth='xl'
             >
-                <div>
-                    <h2>Hi</h2>
-                    <h3>No</h3>
-                </div>
-            </Modal>
+                <Typography component="div" className={classes.paper}>
+                    <img 
+                        width='200'
+                        alt={movieDetails.title}
+                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    />
+                    <Box component='h2' className={classes.title}>
+                        {movie.title}
+                    </Box>
+                    <br/>
+                    <Box component='h2'>
+                        Hi
+                    </Box>
+                </Typography>
+            </Dialog>
         </div>
     )
 }

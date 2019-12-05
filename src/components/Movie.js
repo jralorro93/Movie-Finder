@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Movie = ({movie}) => {
-    console.log('this is props from movie', movie)
     const classes = useStyles()
     return (
         <Grid item className={classes.item}>
