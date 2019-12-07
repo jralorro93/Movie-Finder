@@ -1,6 +1,8 @@
 import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 
+import ImageCarosel from './ImageCarosel'
+
 import { Dialog, Typography, Box, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -39,7 +41,6 @@ const ViewPage = ({movie}) => {
     const classes = useStyles()
     const [ open, setOpen ] = useState(false)
     const [ movieDetails, setMovieDetails ] = useState({})
-    const [ cast, setCast ] = useState({})
 
     const handleOpen = () => {
         setOpen(true)
@@ -57,25 +58,20 @@ const ViewPage = ({movie}) => {
     //     // }
     //     console.log(newArray)
     // }
+
+    useEffect(() => {
+        //set genres here
+    },[])
     
     useEffect(() => {
         const fetchMovieInfo = async () => {
-            const url = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=a64ac52df84876407a110b1db357ebe3`
+            const url = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=a64ac52df84876407a110b1db357ebe3&append_to_response=videos,images,credits`
             const res = await axios.get(url)
             setMovieDetails(res.data)
         } 
         fetchMovieInfo()
     }, [])
-
-    useEffect(() => {
-        const fetchMovieCastInfo = async () => {
-            const url = `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=a64ac52df84876407a110b1db357ebe3`
-            const res = await axios.get(url)
-            setCast(res.data.cast)
-        }
-        fetchMovieCastInfo()
-    }, [])
-
+    console.log('this is moveiDetails', movieDetails)
     return (
         <div>
             <button onClick={ () => handleOpen()}>View Page</button>
@@ -107,7 +103,7 @@ const ViewPage = ({movie}) => {
                         </div>
                     </Box>
                     <Divider variant='middle' className={classes.divider}/>
-
+                    <ImageCarosel images={movieDetails.images}/>
                 </Typography>
             </Dialog>
         </div>
