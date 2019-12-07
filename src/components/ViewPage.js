@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 
-import ImageCarosel from './ImageCarosel'
+import ImageCarosel from './ImageCarousel'
 
 import { Dialog, Typography, Box, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
