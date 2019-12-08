@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 
-import ImageCarosel from './ImageCarosel'
+import ImageCarousel from './ImageCarousel'
 
 import { Dialog, Typography, Box, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
@@ -103,7 +103,7 @@ const ViewPage = ({movie}) => {
                         </div>
                     </Box>
                     <Divider variant='middle' className={classes.divider}/>
-                    <ImageCarosel images={movieDetails.images}/>
+                    <ImageCarousel images={movieDetails.images}/>
                 </Typography>
             </Dialog>
         </div>
