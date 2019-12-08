@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import { Carousel } from 'react-responsive-carousel'
 import {makeStyles} from '@material-ui/styles'
+import { CircularProgress } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
     poster: {
@@ -11,18 +12,26 @@ const useStyles = makeStyles(theme => ({
 
 const ImageCarousel = ({images}) => {
     const classes = useStyles()
-    console.log('images: ', images)
+    const [loading, setLoading] = useState(true)
+    
+    
+    // useEffect(() => {
+    //     return () => {
+
+    //     }
+    // }, [])
+
     return (
         <div>
             <Carousel>
-                <div className={classes.poster}>
-                    <img src={`https://image.tmdb.org/t/p/w500${images.posters[0].file_path}`}/>
-                    <p className='legend'>Legend 1</p>
-                </div>
-                <div>
-                    <img src={`https://image.tmdb.org/t/p/w500${images.posters[1].file_path}`}/>
-                    <p className='legend'>Legend 2</p>
-                </div>
+                {images.posters.map(image => {
+                    return ( 
+                        <div>
+                            <img src={`https://image.tmdb.org/t/p/w500${image.file_path}`}/>
+                            <p className='legend'>{image.vote_count}</p>
+                        </div>
+                    )
+                })}
             </Carousel>
         </div>
     )
