@@ -22,12 +22,7 @@ const CastContainer = ({movie}) => {
     return (
         <div>
             <Grid container>
-                {cast.map((person, index) => {
-                   return ( <Grid item>
-                        <Cast key={index} person={person}/>
-                    </Grid>
-                   )
-                })}
+                {cast.map((person, index) =>  <Cast key={index} person={person}/>)}
             </Grid>
         </div>
     )
