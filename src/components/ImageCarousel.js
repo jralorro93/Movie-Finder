@@ -16,6 +16,7 @@ const ImageCarousel = ({movie}) => {
     const [images, setImages] = useState([])
 
     useEffect(() => {
+        setLoading(false)
         const fetchImages = async () => {
             const url = `https://api.themoviedb.org/3/movie/${movie.id}/images?api_key=a64ac52df84876407a110b1db357ebe3&append_to_response=images`
             const res = await axios.get(url)
@@ -24,19 +25,19 @@ const ImageCarousel = ({movie}) => {
         fetchImages()
         return setImages([])
     }, [])
-    console.log('this is images', images)
+    
     return (
         <div>
-            <Carousel>
+            { loading ? <CircularProgress/> : <Carousel>
                 {images.map(image => {
                     return ( 
                         <div>
                             <img src={`https://image.tmdb.org/t/p/w500${image.file_path}`}/>
-                            <p className='legend'>{image.vote_count}/10</p>
+                            <p className='legend'>{image.vote_count}</p>
                         </div>
                     )
-                })}
-            </Carousel>
+            })}
+            </Carousel>}
         </div>
     )
 }
