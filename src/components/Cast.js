@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 
 import CastPicture from './CastPicture'
 
@@ -11,13 +12,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Cast = ({person}) => {
-    console.log('person: ', person)
-    const url = `https://image.tmdb.org/t/p/w500${person.profile_path}`
     const classes = useStyles()
-
+    const imgUrl = `https://image.tmdb.org/t/p/w500${person.profile_path}`
     return (
         <div>
-            <img src={url} className={classes.image}/>
+            <img src={imgUrl} className={classes.image}/>
             <p>Character: {person.character}</p>
             <p>Played by: {person.name}</p>
         </div>

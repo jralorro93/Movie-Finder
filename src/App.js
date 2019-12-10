@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Header from './components/Header'
 import SearchBar from './components/SearchBar'
@@ -17,6 +17,10 @@ const useStyles = makeStyles(theme => ({
 const App = () => {
   const [ movies, setMovies ] = useState([])
   const classes = useStyles()
+
+  useEffect(() => {
+    return () => {setMovies([])}
+  }, [])
   return (
     <div>
       <Box className={classes.searchBox}>
