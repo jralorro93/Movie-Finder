@@ -2,6 +2,8 @@ import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 
 import ImageCarousel from './ImageCarousel'
+import CastContainer from '../containers/CastContainer'
+import Cast from './Cast'
 
 import { Dialog, Typography, Box, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
@@ -65,11 +67,12 @@ const ViewPage = ({movie}) => {
     
     useEffect(() => {
         const fetchMovieInfo = async () => {
-            const url = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=a64ac52df84876407a110b1db357ebe3`
+            const url = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=a64ac52df84876407a110b1db357ebe3&append_to_response=credits`
             const res = await axios.get(url)
             setMovieDetails(res.data)
         } 
         fetchMovieInfo()
+        return () => { setMovieDetails({}) } 
     }, [])
 
     console.log('this is moveiDetails', movieDetails)
@@ -104,7 +107,9 @@ const ViewPage = ({movie}) => {
                         </div>
                     </Box>
                     <Divider variant='middle' className={classes.divider}/>
-                    <ImageCarousel movie={movie}/>
+                    <CastContainer cast={movieDetails.credits}/>
+                    <Divider />
+                    <ImageCarousel movie={movie} key='ImageCarousel'/>
                 </Typography>
             </Dialog>
         </div>
