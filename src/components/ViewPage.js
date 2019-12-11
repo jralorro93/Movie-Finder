@@ -67,12 +67,11 @@ const ViewPage = ({movie}) => {
     
     useEffect(() => {
         const fetchMovieInfo = async () => {
-            const url = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=a64ac52df84876407a110b1db357ebe3&append_to_response=credits`
+            const url = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=a64ac52df84876407a110b1db357ebe3`
             const res = await axios.get(url)
             setMovieDetails(res.data)
         } 
         fetchMovieInfo()
-        return () => { setMovieDetails({}) } 
     }, [])
 
     console.log('this is moveiDetails', movieDetails)
@@ -107,7 +106,7 @@ const ViewPage = ({movie}) => {
                         </div>
                     </Box>
                     <Divider variant='middle' className={classes.divider}/>
-                    <CastContainer cast={movieDetails.credits}/>
+                    <CastContainer movie={movie}/>
                     <Divider />
                     <ImageCarousel movie={movie} key='ImageCarousel'/>
                 </Typography>
