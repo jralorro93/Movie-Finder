@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
 import photoChecker from '../utils/photo/photoChecker'
+import defaultPic from '../images/defaultPic.jpg'
 
 import { Button, Modal, Dialog, Typography, Box } from '@material-ui/core'
 import  {makeStyles} from '@material-ui/core/styles'
@@ -15,6 +16,7 @@ const useStyles = makeStyles(theme => ({
 const ActorProfile = ({actor}) => {
     const [ open, setOpen ] = useState(false)
     const [ actorDetails, setActorDetails ] = useState({})
+    const [ profilePic, setProfilePic ] = useState('')
     const classes = useStyles()
 
     const handleOpen = () => {
@@ -32,7 +34,16 @@ const ActorProfile = ({actor}) => {
         }
         fetchActorData()
     }, [])
-    console.log('this is actorDetails', actorDetails.images)
+
+    useEffect(() => {
+        if (!actor.profile_path) {
+            setProfilePic(defaultPic)
+        } else {
+            setProfilePic(`https://image.tmdb.org/t/p/w500${actor.profile_path}`)
+        }
+    }, [])
+
+    console.log('this is actorDetails', actorDetails)
     return (
         <div>
             <Button onClick={ () => handleOpen()}>View Profile</Button>
@@ -48,7 +59,7 @@ const ActorProfile = ({actor}) => {
                     </Box>
                     <Box component='div'>
                         <img 
-                            src={photoChecker(actorDetails.images)}
+                            src={profilePic}
                             alt={actor.name}
                         />
 
