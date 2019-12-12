@@ -26,13 +26,13 @@ const useStyles = makeStyles(theme => ({
 const Cast = ({person}) => {
     const classes = useStyles()
     const imgUrl = `https://image.tmdb.org/t/p/w500${person.profile_path}`
-    console.log('this is person', person)
+    
     return (
         <Grid item className={classes.item}>
             <img src={imgUrl} className={classes.image} onClick={ () => searchPerson(person.id)}/>
             <p className={classes.character}>Character: {person.character}</p>
             <p>Played by: {person.name}</p>
-            <ActorProfile />
+            <ActorProfile actor={person}/>
         </Grid>
     )
 }

@@ -74,7 +74,6 @@ const ViewPage = ({movie}) => {
         fetchMovieInfo()
     }, [])
 
-    console.log('this is moveiDetails', movieDetails)
     return (
         <div>
             <button onClick={ () => handleOpen()}>View Page</button>
