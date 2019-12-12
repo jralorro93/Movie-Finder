@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
-import CastPicture from './CastPicture'
 import searchPerson from '../utils/movies/searchPerson'
+import ActorProfile from './ActorProfile'
 
 import { makeStyles } from '@material-ui/styles'
-import { Grid, Box } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 
 import { Link } from 'react-router-dom'
 
@@ -31,7 +31,8 @@ const Cast = ({person}) => {
         <Grid item className={classes.item}>
             <img src={imgUrl} className={classes.image} onClick={ () => searchPerson(person.id)}/>
             <p className={classes.character}>Character: {person.character}</p>
-            <Box component={Link} to='/actorProfile'>Played by: {person.name}</Box>
+            <p>Played by: {person.name}</p>
+            <ActorProfile />
         </Grid>
     )
 }
