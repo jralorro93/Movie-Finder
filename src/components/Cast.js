@@ -5,7 +5,9 @@ import CastPicture from './CastPicture'
 import searchPerson from '../utils/movies/searchPerson'
 
 import { makeStyles } from '@material-ui/styles'
-import { Grid } from '@material-ui/core'
+import { Grid, Box } from '@material-ui/core'
+
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     item: {
@@ -29,8 +31,10 @@ const Cast = ({person}) => {
         <Grid item className={classes.item}>
             <img src={imgUrl} className={classes.image} onClick={ () => searchPerson(person.id)}/>
             <p className={classes.character}>Character: {person.character}</p>
-            <p>Played by: {person.name}</p>
+            <Box component={Link} to='/actorProfile'>Played by: {person.name}</Box>
         </Grid>
     )
 }
 export default Cast
+
+//Left off at needing to pass id to find specific actor

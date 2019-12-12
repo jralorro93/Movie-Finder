@@ -7,27 +7,27 @@ import Header from './Header'
 import SearchBar from './SearchBar'
 import MoviesContainer from '../containers/MoviesContainer'
 
-// const useStyles = makeStyles(theme => ({
-//     searchBox: {
-//       marginLeft: '37%'
-//     }
-//   }))
+const useStyles = makeStyles(theme => ({
+    searchBox: {
+      marginLeft: '37%'
+    }
+  }))
 
 const HomePage = () => {
     const [ movies, setMovies ] = useState([])
-    // const classes = useStyles()
+    const classes = useStyles()
   
-    // useEffect(() => {
-    //   return () => {setMovies([])}
-    // }, [])
+    useEffect(() => {
+      return () => {setMovies([])}
+    }, [])
 
     return (
         <div>
-            {/* <Box className={classes.searchBox}> */}
-            <Header />
-            {/* <SearchBar setMovies={setMovies}/>
+            <Box className={classes.searchBox}>
+                <Header />
+                <SearchBar setMovies={setMovies}/>
             </Box>
-            <MoviesContainer movies={movies}/> */}
+            <MoviesContainer movies={movies}/>
         </div>
     )
 }
