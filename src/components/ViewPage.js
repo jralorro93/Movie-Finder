@@ -10,11 +10,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
     paper: {
-        minHeight: '100px',
-        backgroundColor: theme.palette.background.paper,
         padding: '15px',
-        minWidth: '600px'
-
     },
     title: {
         height: '20px'
