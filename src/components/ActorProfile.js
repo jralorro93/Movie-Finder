@@ -1,15 +1,20 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
-import photoChecker from '../utils/photo/photoChecker'
 import defaultPic from '../images/defaultPic.jpg'
 
-import { Button, Modal, Dialog, Typography, Box } from '@material-ui/core'
+import { Button, Divider, Dialog, Typography, Box } from '@material-ui/core'
 import  {makeStyles} from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
     paper: {
         padding: '15px',
+    },
+    profilePic: {
+        height: '300px'
+    },
+    bio: {
+        display: 'flex'
     }
 }))
 
@@ -17,6 +22,7 @@ const ActorProfile = ({actor}) => {
     const [ open, setOpen ] = useState(false)
     const [ actorDetails, setActorDetails ] = useState({})
     const [ profilePic, setProfilePic ] = useState('')
+    const [ gender, setGender ] = useState('')
     const classes = useStyles()
 
     const handleOpen = () => {
@@ -43,6 +49,10 @@ const ActorProfile = ({actor}) => {
         }
     }, [])
 
+    useEffect(() => {
+        actorDetails.gender === 1 ? setGender('Female') : setGender('Male')
+    }, [])
+
     console.log('this is actorDetails', actorDetails)
     return (
         <div>
@@ -57,13 +67,20 @@ const ActorProfile = ({actor}) => {
                     <Box component='h2'>
                         {actor.name}
                     </Box>
-                    <Box component='div'>
+                    <Box component='div' className={classes.bio}>
                         <img 
                             src={profilePic}
                             alt={actor.name}
+                            className={classes.profilePic}
                         />
-
+                        <div>
+                            <h3>Place of birth: {actorDetails.place_of_birth}</h3>
+                            <h3>Gender: {gender}</h3>
+                            <h3>Birthday: {actorDetails.birthday}</h3>
+                            <h3>Deathday: {actorDetails.deathday}</h3>
+                        </div>
                     </Box>
+                    <Diviver />
                 </Typography>
             </Dialog>
         </div>
