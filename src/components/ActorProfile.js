@@ -15,6 +15,13 @@ const useStyles = makeStyles(theme => ({
     },
     bio: {
         display: 'flex'
+    },
+    divider: {
+        margin: '50px 0 50px 0'
+    },
+    actorInfo: {
+        padding: '10px',
+        marginLeft: '20px'
     }
 }))
 
@@ -54,6 +61,7 @@ const ActorProfile = ({actor}) => {
     }, [])
 
     console.log('this is actorDetails', actorDetails)
+    
     return (
         <div>
             <Button onClick={ () => handleOpen()}>View Profile</Button>
@@ -73,14 +81,20 @@ const ActorProfile = ({actor}) => {
                             alt={actor.name}
                             className={classes.profilePic}
                         />
-                        <div>
+                        <div className={classes.actorInfo}>
                             <h3>Place of birth: {actorDetails.place_of_birth}</h3>
                             <h3>Gender: {gender}</h3>
                             <h3>Birthday: {actorDetails.birthday}</h3>
                             <h3>Deathday: {actorDetails.deathday}</h3>
                         </div>
                     </Box>
-                    <Diviver />
+                    <Divider variant='middle' className={classes.divider}/>
+                    <Box component='div'>
+                        <h3>Biography:</h3>
+                        <p>{actorDetails.biography}</p>
+                    </Box>
+                    <Divider variant='middle' className={classes.divider}/>
+
                 </Typography>
             </Dialog>
         </div>
