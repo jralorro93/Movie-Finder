@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import searchMovies from '../utils/movies/searchMovies'
 
 import { makeStyles } from '@material-ui/core/styles'
-import { Paper, InputBase, Divider, IconButton } from '@material-ui/core'
+import { Paper, InputBase, IconButton } from '@material-ui/core'
 import { Menu, Search } from '@material-ui/icons'
 
 
@@ -20,10 +20,6 @@ const useStyles = makeStyles(theme => ({
     },
       iconButton: {
         padding: 10,
-    },
-      divider: {
-        height: 28,
-        margin: 4,
     },
 }))
 

@@ -1,13 +1,10 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+import React from 'react'
 
 import searchPerson from '../utils/movies/searchPerson'
 import ActorProfile from './ActorProfile'
 
 import { makeStyles } from '@material-ui/styles'
 import { Grid } from '@material-ui/core'
-
-import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     item: {
@@ -29,7 +26,7 @@ const Cast = ({person}) => {
     
     return (
         <Grid item className={classes.item}>
-            <img src={imgUrl} className={classes.image} onClick={ () => searchPerson(person.id)}/>
+            <img src={imgUrl} alt={person.name} className={classes.image} onClick={ () => searchPerson(person.id)}/>
             <p className={classes.character}>Character: {person.character}</p>
             <p>Played by: {person.name}</p>
             <ActorProfile actor={person}/>
