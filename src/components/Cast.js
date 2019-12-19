@@ -37,5 +37,3 @@ const Cast = ({person}) => {
     )
 }
 export default Cast
-
-//Left off at needing to pass id to find specific actor
