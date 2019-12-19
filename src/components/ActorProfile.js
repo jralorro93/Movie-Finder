@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
 import defaultPic from '../images/defaultPic.jpg'
+import ActorImages from './ActorImages'
 
 import { Button, Divider, Dialog, Typography, Box } from '@material-ui/core'
 import  {makeStyles} from '@material-ui/core/styles'
@@ -94,7 +95,7 @@ const ActorProfile = ({actor}) => {
                         <p>{actorDetails.biography}</p>
                     </Box>
                     <Divider variant='middle' className={classes.divider}/>
-
+                    <ActorImages images={actorDetails.images}/>
                 </Typography>
             </Dialog>
         </div>
